@@ -895,6 +895,42 @@ if (Meteor.isServer) {
   });
 
   /**
+   * @operation create_token_from_email
+   * @tag Auth0
+   *
+   * @summary Create token from email address for Auth0 login.
+   *
+   * @description Create token from email address for Auth0 login.
+   *
+   * **Note**: This is used during Auth0 login process and currently
+   * API call does not have authentication - please check is it necessary
+   * to add it, and how to add it.
+   *
+   * @param {string} email email address of user
+   * @return_type {_id: string,
+   *               title: string}
+   */
+  JsonRoutes.add('POST', '/api/v1/users.createTokenFromEmail', function (req, res) {
+    try {
+      // Authentication.checkUserId(req.userId);
+      const user = this.requestParams();
+      let data;
+      //Meteor.runAsUser(user.email, () => {
+      data = Meteor.call('createTokenFromEmail', user.email);
+      JsonRoutes.sendResult(res, {
+        code: 200,
+        data: data,
+      });
+    }
+    catch (error) {
+      JsonRoutes.sendResult(res, {
+        code: 200,
+        data: error,
+      });
+    }
+  });
+
+  /**
    * @operation add_board_member
    * @tag Boards
    *
