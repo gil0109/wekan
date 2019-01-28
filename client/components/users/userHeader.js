@@ -15,27 +15,28 @@ Template.memberMenuPopup.events({
     AccountsTemplates.logout();
 
     // Custom code added for logout session from auth0.
-    var auth0Service = ServiceConfiguration.configurations.find({}, {
+    const auth0Service = ServiceConfiguration.configurations.find({}, {
       sort: {
         service: 1,
       },
     }).fetch();
-    var host = window.location.host;
-    var hostTemp = host.split('.');
-    hostTemp.splice(0, 1)
-    var domain = '.' + hostTemp.join('.');
+    const host = window.location.host;
+    const hostTemp = host.split('.');
+    hostTemp.splice(0, 1);
+    const domain = `.${  hostTemp.join('.')}`;
     const cookies = new Cookies();
     cookies.remove('rc_token');
-    cookies.remove('vowhiskitforabiscuitatpolicy', '/', domain);
+    cookies.remove('re', '/', domain);
+    let returnUrl = '';
     if (window.location.href.indexOf('https') >= 0) {
-      var returnUrl = 'https://' + host + '/home';
+      returnUrl = `https://${  host  }/home`;
     } else {
-      var returnUrl = 'http://' + host + '/home';
+      returnUrl = `http://${  host  }/home`;
     }
     if (auth0Service.length > 0) {
-      var auth0logoutUrl = auth0Service[0].serverURL + 'v2/logout';
-      var clientId = auth0Service[0].clientId;
-      window.location = auth0logoutUrl + '?returnTo=' + returnUrl + '&client_id=' + clientId;
+      const auth0logoutUrl = `${auth0Service[0].serverURL  }v2/logout`;
+      const clientId = auth0Service[0].clientId;
+      window.location = `${auth0logoutUrl  }?returnTo=${  returnUrl  }&client_id=${  clientId}`;
     }
 
   },

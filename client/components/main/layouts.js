@@ -35,42 +35,42 @@ Template.userFormsLayout.onRendered(() => {
   }
   EscapeActions.executeAll();
 
-	Tracker.autorun(() => {
-		Meteor.setTimeout(function () {
-			var rc_token =  Cookie.get("rc_token");
-			var login_token =  Cookie.get("vowhiskitforabiscuitatpolicy");
-			var triggerLogin = function () {
-				self.rc_token.set(true);
-				$('.logo').css('display','block');
-				Meteor.setTimeout(function () {
-					$('.external-login').trigger('click');
-				},1000);
-			}
-			var showAll = function () {
-				$('.logo').css('display','block');
-				self.rc_token.set(true);
-			}
-			var hidAll = function () {
-				$('.logo').css('display','none');
-				self.rc_token.set(false);
-			}
-			if(rc_token == undefined && login_token != undefined) {
-				triggerLogin();
-			}
-			else if(rc_token == undefined && login_token == undefined) {
-				showAll();
-			}
-			else if(rc_token != undefined && login_token == undefined && !Meteor.userId()) {
-				showAll();
-			}
-			else if(rc_token != undefined && login_token != undefined && !Meteor.userId()) {
-				triggerLogin();
-			}
-			else {
-				hidAll();
-			}
-		}, 1000);
-	})
+  Tracker.autorun(() => {
+    Meteor.setTimeout(function () {
+      const rcToken =  Cookie.get('rc_token');
+      const loginToken =  Cookie.get('vowhiskitforabiscuitatpolicy');
+      const triggerLogin = function () {
+        self.rcToken.set(true);
+        $('.logo').css('display', 'block');
+        Meteor.setTimeout(function () {
+          $('.external-login').trigger('click');
+        }, 1000);
+      };
+      const showAll = function () {
+        $('.logo').css('display', 'block');
+        self.rcToken.set(true);
+      };
+      const hidAll = function () {
+        $('.logo').css('display', 'none');
+        self.rcToken.set(false);
+      };
+      if(rcToken === undefined && loginToken !== undefined) {
+        triggerLogin();
+      }
+      else if(rcToken === undefined && loginToken === undefined) {
+        showAll();
+      }
+      else if(rcToken !== undefined && loginToken === undefined && !Meteor.userId()) {
+        showAll();
+      }
+      else if(rcToken !== undefined && loginToken !== undefined && !Meteor.userId()) {
+        triggerLogin();
+      }
+      else {
+        hidAll();
+      }
+    }, 1000);
+  });
 
 });
 

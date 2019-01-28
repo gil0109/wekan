@@ -914,12 +914,11 @@ if (Meteor.isServer) {
     try {
       // Authentication.checkUserId(req.userId);
       const user = this.requestParams();
-      let data;
       //Meteor.runAsUser(user.email, () => {
-      data = Meteor.call('createTokenFromEmail', user.email);
+      const data = Meteor.call('createTokenFromEmail', user.email);
       JsonRoutes.sendResult(res, {
         code: 200,
-        data: data,
+        data,
       });
     }
     catch (error) {
