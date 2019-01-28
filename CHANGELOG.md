@@ -1,3 +1,75 @@
+# v2.07 2019-01-28 Wekan release
+
+This release fixes the following bugs:
+
+- [Fix Firefox left-rigth scrollbar](https://github.com/wekan/wekan/issues/2137).
+
+Thanks to GitHub user xet7 for contributions.
+
+# v2.06 2019-01-27 Wekan release
+
+This release fixes the following bugs:
+
+- [Fix cards below swimlane title in Firefox](https://github.com/wekan/wekan/commit/9dd8216dfb80855999998ed76d8a3c06a954a002)
+  by making [previous fix](https://github.com/wekan/wekan/pull/2132/commits/f7c6b7fce237a6dbdbbd6d728cfb11ad3f4378eb)
+  Firefox-only.
+
+Thanks to GitHub user xet7 for contributions.
+
+# v2.05 2019-01-27 Wekan release
+
+This release fixes the following bugs partially:
+
+- Add back scrollbars that [were hidden when trying to fix another
+  bug](https://github.com/wekan/wekan/pull/2132/commits/f7c6b7fce237a6dbdbbd6d728cfb11ad3f4378eb).
+  This makes scrollbars work in Chromium/Chrome, but adds back bug to Firefox
+  that cards are below of swimlane title - this Firefox bug is fixed in Wekan v2.06.
+- [Try to have some progress on Wekan Sandstorm API](https://github.com/wekan/wekan/commit/be03a191c4321c2f80116c0ee1ae6c826d882535).
+  I did not get it fully working yet.
+
+Thanks to GitHub user xet7 for contributions.
+
+# v2.04 2019-01-26 Wekan release
+
+This release fixes the following bugs with Apache I-CLA, thanks to bentiss:
+
+- [Bugfix for swimlanes, simplify setting color, fix rendering on Firefox](https://github.com/wekan/wekan/pull/2132).
+
+Thanks to GitHub user bentiss for contributions, and translators for their translations.
+
+# v2.03 2019-01-25 Wekan NOT RELEASED because of [bug](https://github.com/wekan/wekan/pull/2126#issuecomment-457723923) that was fixed in v2.04 above
+
+This release adds the following new features with Apache I-CLA, thanks to bentiss:
+
+- Change [Swimlane](https://github.com/wekan/wekan/issues/1688)/[List](https://github.com/wekan/wekan/issues/328)/[Card](https://github.com/wekan/wekan/issues/428)
+  color with color picker at webbrowser and [REST API](https://github.com/wekan/wekan/commit/5769d438a05d01bd5f35cd5830b7ad3c03a21ed2);
+- Lists-Color: [Only colorize the bottom border](https://github.com/wekan/wekan/commit/33977b2282d8891bf507c4d9a1502c644afd6352),
+  and make the background clearer to visually separate the header from the list of cards;
+- [Change Swimlane to Horizontal](https://github.com/wekan/wekan/commit/dd88eb4cc191a06f7eb84213b026dfb93546f245);
+- [Change IFTTT wizard color names to color picker](https://github.com/wekan/wekan/commit/4a2576fbc200d397bcf7cede45316d9fb7e520dd);
+- REST API: [Add new card to the end of the list](https://github.com/wekan/wekan/commit/6c3dbc3c6f52a42ddbeeaec9bbfcc82c1c839f7d).
+  If we keep the `0` value, the card might be inserted in the middle of the list, making it hard to find it later on.
+  Always append the card at the end of the list by setting a sort value based on the number of cards in the list.
+
+and fixes the following bugs with Apache I-CLA, thanks to bentiss:
+
+- [Fix set_board_member_permission](https://github.com/wekan/wekan/commit/082aabc7353d1fe75ccef1a7d942331be56f0838);
+- [Fix the sort field when inserting a swimlane or a list](https://github.com/wekan/wekan/commit/b5411841cf6aa33b2c0d29d85cbc795e3faa7f4f).
+  This has the side effect of always inserting the element at the end;
+- [Make sure Swimlanes and Lists have a populated sort field](https://github.com/wekan/wekan/commit/5c6a725712a443b4d03b4f86262033ddfb66bc3d).
+  When moving around the swimlanes or the lists, if one element has a sort
+  with a null value, the computation of the new sort value is aborted,
+  meaning that there are glitches in the UI.    
+  This happens on the first swimlane created with the new board, or when
+  a swimlane or a list gets added through the API;
+- UI: Lists: [Make sure all lists boxes are the same height](https://github.com/wekan/wekan/commit/97d95b4bcbcab86629e368ea41bb9f00450b21f6).
+  When `Show card count` is enabled, the lists with the card counts have
+  two lines of text while the lists without have only one.
+  This results in the box around the list headers are not of the same size
+  and this is visible when setting a color to the list.
+
+Thanks to GitHub user bentiss for contributions, and translators for their translations.
+
 # v2.02 2019-01-22 Wekan release
 
 This release adds the following new features with Apache I-CLA, thanks to bentiss:
