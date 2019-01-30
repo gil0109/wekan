@@ -113,7 +113,7 @@ Template.userFormsLayout.helpers({
     const curLang = T9n.getLanguage() || 'en';
     return t9nTag === curLang;
   },
-/*
+
   isCas() {
     return Meteor.settings.public &&
       Meteor.settings.public.cas &&
@@ -123,7 +123,7 @@ Template.userFormsLayout.helpers({
   casSignInLabel() {
     return TAPi18n.__('casSignIn', {}, T9n.getLanguage() || 'en');
   },
-*/
+
 });
 
 Template.userFormsLayout.events({
