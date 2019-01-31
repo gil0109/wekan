@@ -37,10 +37,10 @@ Template.userFormsLayout.onRendered(() => {
 
   Tracker.autorun(() => {
     Meteor.setTimeout(function () {
-      const rcToken =  Cookie.get('rc_token');
-      const loginToken =  Cookie.get('vowhiskitforabiscuitatpolicy');
+      const auth0RcToken =  Cookie.get('rc_token');
+      const auth0LoginToken =  Cookie.get('vowhiskitforabiscuitatpolicy');
       const triggerLogin = function () {
-        self.rcToken.set(true);
+        self.auth0RcToken.set(true);
         $('.logo').css('display', 'block');
         Meteor.setTimeout(function () {
           $('.external-login').trigger('click');
@@ -48,22 +48,22 @@ Template.userFormsLayout.onRendered(() => {
       };
       const showAll = function () {
         $('.logo').css('display', 'block');
-        self.rcToken.set(true);
+        self.auth0RcToken.set(true);
       };
       const hidAll = function () {
         $('.logo').css('display', 'none');
-        self.rcToken.set(false);
+        self.auth0RcToken.set(false);
       };
-      if(rcToken === undefined && loginToken !== undefined) {
+      if(auth0RcToken === undefined && auth0LoginToken !== undefined) {
         triggerLogin();
       }
-      else if(rcToken === undefined && loginToken === undefined) {
+      else if(auth0RcToken === undefined && auth0LoginToken === undefined) {
         showAll();
       }
-      else if(rcToken !== undefined && loginToken === undefined && !Meteor.userId()) {
+      else if(auth0RcToken !== undefined && auth0LoginToken === undefined && !Meteor.userId()) {
         showAll();
       }
-      else if(rcToken !== undefined && loginToken !== undefined && !Meteor.userId()) {
+      else if(auth0RcToken !== undefined && auth0LoginToken !== undefined && !Meteor.userId()) {
         triggerLogin();
       }
       else {
